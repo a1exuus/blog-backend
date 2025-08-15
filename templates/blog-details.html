@@ -8,7 +8,7 @@
     <title>Remake Barber - Blog Details</title>
     <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
 
-    <link rel="stylesheet" href="{% static 'styles.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.min.css' %}">
   </head>
   <body>
     <!--================Header Menu Area =================-->
@@ -66,24 +66,28 @@
         <div class="row">
           <div class="col-lg-8">
             <div class="main_blog_details">
-              <img class="img-fluid" src="{% static 'img/blog/blog4.png' %}" alt="">
-              <h4>Cartridge Is Better Than Ever <br /> A Discount Toner</h4>
+              {% if post.image_url %}
+              <img class="img-fluid" src="{% static '{{ post.image_url }}' %}" alt="">
+              {% else %}
+              <img class="img-fluid" src="{% static 'img/banner/blog.png' %}" alt="">
+              {% endif %}
+              <h4>{{ post.title }}</h4>
               <div class="user_details">
                 <div class="mt-sm-0 mt-3">
                   <div class="media">
                     <div class="media-body">
-                      <h5>Mark wiens</h5>
-                      <p>12 Dec, 2017 11:21 am</p>
+                      <h5>{{ post.author }}</h5>
+                      <p>{{ post.published_at }}</p>
                     </div>
                   </div>
                 </div>
               </div>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...
+                {{ post.text }}
               </p>
               <div class="news_d_footer flex-column flex-sm-row">
-                <a href="#"><span class="align-middle mr-2"><i class="ti-heart"></i></span>Lily and 4 people like this</a>
-                <a class="justify-content-sm-center ml-sm-auto mt-sm-0 mt-2" href="#"><span class="align-middle mr-2"><i class="ti-themify-favicon"></i></span>03 Comments</a>
+                <a href="#"><span class="align-middle mr-2"><i class="ti-heart"></i></span>{{ post.likes_amount }} people like this</a>
+                <a class="justify-content-sm-center ml-sm-auto mt-sm-0 mt-2" href="#"><span class="align-middle mr-2"><i class="ti-themify-favicon"></i></span>03 comments</a>
                 <div class="news_socail ml-sm-auto mt-sm-0 mt-2">
                   <a href="#"><i class="fab fa-facebook-f"></i></a>
                   <a href="#"><i class="fab fa-twitter"></i></a>
@@ -179,6 +183,6 @@
     </footer>
     <!--================ End Footer Area =================-->
 
-    <script src="{% static 'scripts.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
   </body>
 </html>
